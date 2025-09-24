@@ -1,0 +1,50 @@
+services:
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - promptlab-network
+
+  api:
+    build: .
+    ports:
+      - "5001:5001"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - n8n # <-- Buena práctica: la API depende de n8n para estar lista
+    networks:
+      - promptlab-network
+
+  worker:
+    build: .
+    command: python -m rq worker --url redis://redis:6379
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    networks:
+      - promptlab-network
+
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://n8n:5678/
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+    networks:
+      - promptlab-network
+
+networks:
+  promptlab-network: # <-- Renombré la red a algo más específico del proyecto
+    driver: bridge

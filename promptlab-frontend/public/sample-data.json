@@ -1,0 +1,19 @@
+{
+    "success": true,
+    "data": {
+        "previewData": [
+            { "id_cliente": 101, "nombre": "Ana", "ciudad": "Madrid", "compras": 12 },
+            { "id_cliente": 102, "nombre": "Luis", "ciudad": "Barcelona", "compras": 5 },
+            { "id_cliente": 103, "nombre": "Sofia", "ciudad": "Madrid", "compras": null },
+            { "id_cliente": 104, "nombre": "Carlos", "ciudad": "Sevilla", "compras": 8 },
+            { "id_cliente": 105, "nombre": "Elena", "ciudad": "Valencia", "compras": 15 }
+        ],
+        "diagnostics": {
+            "totalRows": 1500,
+            "totalColumns": 4,
+            "duplicates": 15,
+            "nanValues": 1,
+            "problematicColumns": ["compras"]
+        }
+    }
+}

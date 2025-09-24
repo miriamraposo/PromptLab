@@ -1,0 +1,28 @@
+
+# promptlab_backend/.dockerignore
+# Entorno virtual de Python
+# Ignora cualquier carpeta que se llame 'env', 'venv' o '.venv'.
+env/
+venv/
+.venv/
+
+# Archivos y carpetas de caché de Python
+# Es importante usar los dos guiones bajos.
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de configuración de IDEs (Entornos de Desarrollo)
+.vscode/
+.idea/
+
+# Archivos de log y temporales
+*.log
+*.tmp
+*.swp
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+yolov8n.pt
